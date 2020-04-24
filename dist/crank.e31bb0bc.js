@@ -2655,10 +2655,53 @@ var _cjs = require("@bikeshaving/crank/cjs");
 
 var _dom = require("@bikeshaving/crank/cjs/dom");
 
-/** @jsx createElement */
-_dom.renderer.render((0, _cjs.createElement)("div", {
-  id: "hello"
-}, "Hello world"), document.body);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function Greeting(_ref) {
+  var _ref$name = _ref.name,
+      name = _ref$name === void 0 ? 'World' : _ref$name;
+  return (0, _cjs.createElement)("div", null, (0, _cjs.createElement)("div", null, " Yello ", name), "yield (", (0, _cjs.createElement)(GetQuote, null), ")");
+}
+
+function GetQuote() {
+  return _GetQuote.apply(this, arguments);
+}
+
+function _GetQuote() {
+  _GetQuote = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var res, _yield$res$json, quote;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch('https://favqs.com/api/qotd');
+
+          case 2:
+            res = _context.sent;
+            _context.next = 5;
+            return res.json();
+
+          case 5:
+            _yield$res$json = _context.sent;
+            quote = _yield$res$json.quote;
+            return _context.abrupt("return", // <p>lol</p>
+            (0, _cjs.createElement)("p", null, "lol \"", quote.body, "\""));
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _GetQuote.apply(this, arguments);
+}
+
+_dom.renderer.render((0, _cjs.createElement)(GetQuote, null), document.body); // renderer.render(<div id='wee'>yellooo</div>, document.body);
 },{"@bikeshaving/crank/cjs":"node_modules/@bikeshaving/crank/cjs/index.js","@bikeshaving/crank/cjs/dom":"node_modules/@bikeshaving/crank/cjs/dom.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2687,7 +2730,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51926" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52438" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
